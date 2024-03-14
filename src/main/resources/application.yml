@@ -1,0 +1,11 @@
+spring:
+    application:
+        name: Kledo Invetory Explorer
+    datasource:
+        url: jdbc:mysql://localhost:3306/kledo_inventory_explorer
+        username: admin
+        password: root
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        hibernate:
+            ddl-auto: update

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html th:fragment="layout (content, activeLink, pageTitle)">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:text="${pageTitle}">Page title</title>
+
+    <!-- Bootstrap core -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+
+    <!-- Bootstrap Script -->
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</head>
+<div sec:authorize="isAuthenticated()">
+    <nav class="navbar navbar-expand-lg static-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <th:block sec:authorize="hasRole('CUSTOMER')">
+                <!-- menu for customer-->
+                <div th:replace="~{fragments/customer-nav.html :: navlinks(${activeLink})}"></div>
+            </th:block>
+
+            <th:block sec:authorize="hasRole('PROVIDER')">
+                <!-- menu for provider-->
+                <div th:replace="~{fragments/provider-nav.html :: navlinks(${activeLink})}"></div>
+            </th:block>
+
+            <th:block sec:authorize="hasRole('ADMIN')">
+                <!-- menu for admin-->
+                <div th:replace="~{fragments/admin-nav.html :: navlinks(${activeLink})}"></div>
+            </th:block>
+            
+            <div class="collapse navbar-collapse">
+                <ul class= "navbar-nav ml-auto">
+                    <li>
+                        <p class="navbar-nav ml-auto navbar-text"> Logged as: |<span sec:authentication="name"> username</span> |</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class= "navbar-nav ml-auto">
+                    <li>
+                        <form th:action="@{/perform_logout}" id="logout" method="POST">
+                            <a class="nav-link" href="#"
+                               onclick="document.getElementById('logout').submit(); return false;">Log out</a>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Page Content -->
+<div class="container">
+    <th:block th:insert="${content}"/>
+    <div class="row align-items-center justify-content-center" style="margin-top: 50px">
+</div>
+</div>
+</body>
+</html>

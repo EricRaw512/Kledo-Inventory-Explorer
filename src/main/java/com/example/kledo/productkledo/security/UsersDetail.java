@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users implements UserDetails{
+public class UsersDetail implements UserDetails{
 
     private int id;
     private String userName;
@@ -24,9 +24,9 @@ public class Users implements UserDetails{
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public static Users createUserDetail(User user) {
+    public static UsersDetail createUserDetail(User user) {
         Collection<? extends GrantedAuthority> authorities  = List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
-        return new Users(
+        return new UsersDetail(
             user.getId(),
             user.getUserName(),
             user.getEmail(),

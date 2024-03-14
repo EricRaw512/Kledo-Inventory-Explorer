@@ -37,5 +37,5 @@ public class User extends BaseEntity{
         this.email = userForm.getEmail();
         this.password = encryptedPassword;
         this.role = role;
-    }  
+    }
 }
