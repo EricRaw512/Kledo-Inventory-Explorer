@@ -20,19 +20,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <th:block sec:authorize="hasRole('CUSTOMER')">
+            <th:block sec:authorize="hasRole('ADMIN')">
                 <!-- menu for customer-->
                 <div th:replace="~{fragments/customer-nav.html :: navlinks(${activeLink})}"></div>
             </th:block>
 
-            <th:block sec:authorize="hasRole('PROVIDER')">
+            <th:block sec:authorize="hasRole('USER')">
                 <!-- menu for provider-->
                 <div th:replace="~{fragments/provider-nav.html :: navlinks(${activeLink})}"></div>
-            </th:block>
-
-            <th:block sec:authorize="hasRole('ADMIN')">
-                <!-- menu for admin-->
-                <div th:replace="~{fragments/admin-nav.html :: navlinks(${activeLink})}"></div>
             </th:block>
             
             <div class="collapse navbar-collapse">
