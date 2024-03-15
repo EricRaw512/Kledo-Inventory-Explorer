@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home','Home')}">
+    <body>
+        <header class="bg-dark text-white text-center py-3">
+            <h1>Selamat Datang di Daftar Gudang dan Produk Kami</h1>
+        </header>
+        <main class="container mt-5">
+            <section id="introduction">
+                <h2>Tentang Kami</h2>
+                <p>Kami menyediakan daftar lengkap gudang dan produk, memudahkan Anda menemukan apa yang Anda butuhkan. Jelajahi database kami untuk menemukan opsi terbaik untuk kebutuhan Anda.</p>
+            </section>
+            <section id="featured" class="mt-5">
+                <h2>Gudang dan Produk Unggulan</h2>
+            </section>
+            <section id="call-to-action" class="mt-5">
+                <h2>Siap menemukan Gudang atau Produk yang Tepat?</h2>
+                <p>Jelajahi database kami sekarang dan temukan apa yang Anda cari.</p>
+                <a class="nav-link" th:href="@{/warehouse/all}">Gudang</a>
+                <a class="nav-link" th:href="@{/product/all}">Product</a>
+            </section>
+        </main>
+  </body>
+</html>

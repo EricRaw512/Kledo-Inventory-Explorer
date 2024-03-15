@@ -27,7 +27,7 @@ public class Product extends BaseEntity{
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "product_warehouse",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "warehouse_id"))
+            joinColumns = @JoinColumn(name = "id_product"),
+            inverseJoinColumns = @JoinColumn(name = "id_warehouse"))
     private Set<Warehouse> warehouses;
 }
