@@ -2,11 +2,8 @@ package com.example.kledo.productkledo.entity;
 
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,11 +20,7 @@ public class Product extends BaseEntity{
 
     private String name;
     private String photo;
-    private int qty;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "product_warehouse",
-            joinColumns = @JoinColumn(name = "id_product"),
-            inverseJoinColumns = @JoinColumn(name = "id_warehouse"))
-    private Set<Warehouse> warehouses;
+    @OneToMany(mappedBy = "product")
+    private Set<ProductWarehouse> productWarehouses;
 }

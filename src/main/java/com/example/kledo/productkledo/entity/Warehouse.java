@@ -4,7 +4,7 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,8 +26,8 @@ public class Warehouse extends BaseEntity{
     private String code;
 
     @Column(name = "qty")
-    private double qty;
+    private int qty; //Total Quantity Of All Product
     
-    @ManyToMany(mappedBy = "warehouses")
-    private Set<Product> products;
+    @OneToMany(mappedBy = "warehouse")
+    private Set<ProductWarehouse> productWarehouses;
 }
