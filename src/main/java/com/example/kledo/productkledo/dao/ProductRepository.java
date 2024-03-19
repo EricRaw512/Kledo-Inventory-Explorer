@@ -12,7 +12,7 @@ import com.example.kledo.productkledo.entity.Product;
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 
     @Query("SELECT p.name, p.photo, pw.qty FROM Product p JOIN p.productWarehouses pw JOIN pw.warehouse w WHERE w.id = :warehouseId")
-    List<Object[]> findProductsByWarehouseId(@Param("id") int id);
+    List<Object[]> findProductsByWarehouseId(@Param("warehouseId") int id);
 
     @Query("SELECT p.name, p.photo, SUM(pw.qty) FROM Product p JOIN p.productWarehouses pw GROUP BY p")
     List<Object[]> findAllProductsWithTotalQty();

@@ -1,5 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'warehouse','Warehouse Detail')}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'user','Create User')}">
     <body>
-        
+        <div class="row" style="margin-top: 50px" ;>
+            <div class="col-lg-3 text-center"></div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div th:if="${createdUserName != null}" class="alert alert-success">
+                            <p>User <span th:text="${createdUserName}"></span> added!</p>
+                        </div>
+                        <form th:action="@{${registerAction}}" th:object="${user}" method="POST">
+                            <div th:if="${registrationError != null}" class="alert alert-danger">
+                                <p th:text="${registrationError}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">Username</label>
+                                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('userName') ? 'is-invalid' :''}" th:field="*{userName}" placeholder="username">
+                                <p th:if="${#fields.hasErrors('userName')}" class="invalid-feedback" th:errors="*{userName}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" th:classappend="${#fields.hasErrors('password') ? 'is-invalid' :''}" th:field="*{password}" placeholder="password">
+                                <p th:if="${#fields.hasErrors('password')}" class="invalid-feedback" th:errors="*{password}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="matchingPassword">Repeat password</label>
+                                <input type="password" class="form-control" th:classappend="${#fields.hasErrors('matchingPassword') ? 'is-invalid' :''}" th:field="*{matchingPassword}"
+                                       placeholder="repeat password">
+                                <p th:if="${#fields.hasErrors('matchingPassword')}" class="invalid-feedback" th:errors="*{matchingPassword}"></p>
+                            </div>
+                            <button style="margin-top: 10px" type="submit" class="btn btn-success">Register</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </body>
     </body>

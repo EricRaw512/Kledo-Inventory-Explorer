@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.kledo.productkledo.dao.ProductRepository;
 import com.example.kledo.productkledo.dto.ProductDTO;
+import com.example.kledo.productkledo.entity.Product;
 
 import lombok.RequiredArgsConstructor;
 
@@ -40,6 +41,10 @@ public class ProductService {
         }
 
         return productQtyDTOs;
+    }
+
+    public Product getProductWithId(int id) {
+        return productRepository.findById(id).orElse(null);
     }
 
 }

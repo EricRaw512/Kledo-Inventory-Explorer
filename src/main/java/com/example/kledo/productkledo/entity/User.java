@@ -26,15 +26,11 @@ public class User extends BaseEntity{
     @Column(name = "password")
     private String password;
 
-    @Column(name = "email")
-    private String email;
-
     @Enumerated(EnumType.STRING)
     private Role role;
 
     public User(UserForm userForm, String encryptedPassword, Role role) {
         this.userName = userForm.getUserName();
-        this.email = userForm.getEmail();
         this.password = encryptedPassword;
         this.role = role;
     }

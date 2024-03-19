@@ -20,7 +20,6 @@ public class UsersDetail implements UserDetails{
 
     private int id;
     private String userName;
-    private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -29,7 +28,6 @@ public class UsersDetail implements UserDetails{
         return new UsersDetail(
             user.getId(),
             user.getUserName(),
-            user.getEmail(),
             user.getPassword(),
             authorities
         );

@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
     
     private final UserRepository userRepository;
-        private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public void saveNewUser(@Valid UserForm userForm) {
         User user = new User(userForm, passwordEncoder.encode(userForm.getPassword()), Role.USER);
@@ -27,6 +27,10 @@ public class UserService {
     @PreAuthorize("hasRole('ADMIN')")
     public void deleteUserById(int id) {
         userRepository.deleteById(id);
+    }
+
+    public boolean userExist(String value) {
+        return userRepository.findByUserName(value).orElse(null) != null;
     }
 
 }
