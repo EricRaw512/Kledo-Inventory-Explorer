@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.kledo.productkledo.dao.ProductRepository;
 import com.example.kledo.productkledo.dto.ProductDTO;
 import com.example.kledo.productkledo.entity.Product;
+import com.example.kledo.productkledo.model.ProductsResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,10 +22,11 @@ public class ProductService {
         List<Object[]> results = productRepository.findAllProductsWithTotalQty();
         List<ProductDTO> productQtyDTOs = new ArrayList<>();
         for (Object[] result : results) {
-            String name = (String) result[0];
-            String photo = (String) result[1];
-            int totalQty = (int) result[2];
-            productQtyDTOs.add(new ProductDTO(name, photo, totalQty));
+            int productId = (int) result[0];
+            String name = (String) result[1];
+            String photo = (String) result[2];
+            int totalQty = (int) result[3];
+            productQtyDTOs.add(new ProductDTO(productId, name, photo, totalQty));
         }
 
         return productQtyDTOs;
@@ -34,10 +36,11 @@ public class ProductService {
         List<Object[]> results = productRepository.findProductsByWarehouseId(id);
         List<ProductDTO> productQtyDTOs = new ArrayList<>();
         for (Object[] result : results) {
-            String name = (String) result[0];
-            String photo = (String) result[1];
-            int qty = (int) result[2];
-            productQtyDTOs.add(new ProductDTO(name, photo, qty));
+            int productId = (int) result[0];
+            String name = (String) result[1];
+            String photo = (String) result[2];
+            int totalQty = (int) result[3];
+            productQtyDTOs.add(new ProductDTO(productId, name, photo, totalQty));
         }
 
         return productQtyDTOs;
@@ -45,6 +48,22 @@ public class ProductService {
 
     public Product getProductWithId(int id) {
         return productRepository.findById(id).orElse(null);
+    }
+
+    public Product convertToEntityProduct(ProductsResponse.WarehouseData.Products.ProductInWarehouse apiProduct) {
+        Product product = new Product();
+        product.setId(apiProduct.getProductId());
+        product.setName(apiProduct.getName());
+        product.setPhoto(apiProduct.getPhoto());
+        return product;
+    }
+
+    public void createOrUpdateProduct(Product product) {
+        productRepository.save(product);
+    }
+
+    public void updateProducts(List<Product> products) {
+        products.forEach(this::createOrUpdateProduct);
     }
 
 }

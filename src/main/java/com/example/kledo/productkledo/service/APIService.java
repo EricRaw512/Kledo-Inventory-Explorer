@@ -2,6 +2,7 @@ package com.example.kledo.productkledo.service;
 
 import com.example.kledo.productkledo.model.BearerRequest;
 import com.example.kledo.productkledo.model.BearerResponse;
+import com.example.kledo.productkledo.model.ProductsResponse;
 import com.example.kledo.productkledo.model.WarehouseResponse;
 
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,20 @@ public class APIService {
                 HttpMethod.GET,
                 entity,
                 WarehouseResponse.class);
+
+        return response.getBody();
+    }
+
+    public ProductsResponse fetchProductsFromApi(String bearerToken, int warehouseId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(bearerToken); 
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<ProductsResponse> response = restTemplate.exchange(
+                "https://cvciptakaryafurindo.api.kledo.com/api/v1/finance/warehouses/" + warehouseId + "?per_page=10000",
+                HttpMethod.GET, 
+                entity,
+                ProductsResponse.class);
 
         return response.getBody();
     }

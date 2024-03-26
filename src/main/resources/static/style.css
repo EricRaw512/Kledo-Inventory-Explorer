@@ -1,0 +1,21 @@
+.product-photo {
+    width: 500px;
+    height: 500px; 
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .product-photo {
+        width: 250px;
+        height: 200px;
+        object-fit: contain;
+    }
+}
+.warehouse-name {
+    cursor: pointer;
+}
+
+#nav-link-red {
+    color: red;
+    font-size: 20px;
+}

@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'product','Product Detail')}">
 <body>
-    <style>
-        .product-photo {
-            width: 200px;
-            height: 200px;
-        }
-        .warehouse-name {
-            cursor: pointer;
-        }
-    </style>
-
     <div class="container">
         <h2 th:text="${product.name}"></h2>
         <img th:src="${product.photo}" class="product-photo" alt="Product Photo">
@@ -25,7 +15,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="warehouseQty : ${warehouses}">
+            <tr th:each="warehouseQty : ${warehouses}"> 
                 <td>
                     <a th:href="@{/warehouse/{id}(id=${warehouseQty.warehouse.id})}" th:text="${warehouseQty.warehouse.name}" class="warehouse-name"></a>
                 </td>

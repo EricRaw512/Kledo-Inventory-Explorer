@@ -11,7 +11,7 @@
             </thead>
             <tbody>
                 <tr th:each="product : ${products}">
-                    <td><img th:src="@{/images/ + ${product.photo}}" alt="Product Photo" width="100"></td>
+                    <td><img th:src="@{/images/ + ${product.photo}}" class="product-photo" alt="Product Photo" width="100"></td>
                     <td th:text="${product.name}"></td>
                     <td th:text="${product.qty}"></td>
                 </tr>
@@ -19,7 +19,14 @@
         </table>
         <script>
             $(document).ready(function() {
-                $('#productTable').DataTable();
+                $('#productTable').DataTable({
+                    responsive: true,
+                    columns: [
+                        null,
+                        {searchable: true }, // name column
+                        null, // qty column
+                    ]
+                });
             });
         </script>
     </body>

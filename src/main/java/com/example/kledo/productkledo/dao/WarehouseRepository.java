@@ -11,7 +11,7 @@ import com.example.kledo.productkledo.entity.Warehouse;
 
 public interface WarehouseRepository extends JpaRepository<Warehouse, Integer>{
 
-    @Query("SELECT pw.warehouse, pw.qty FROM ProductWarehouse pw JOIN pw.product p WHERE p.id = :productId")
+    @Query("SELECT pw.id, pw.warehouse, pw.qty FROM ProductWarehouse pw JOIN pw.product p WHERE p.id = :productId")
     List<Object[]> findAllWarehousesAndQtyByProductId(@Param("productId") int productId);
 
 } 

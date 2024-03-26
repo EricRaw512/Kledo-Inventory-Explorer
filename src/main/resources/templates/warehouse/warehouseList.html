@@ -25,8 +25,7 @@
         <script>
             $(document).ready(function() {
                 $('#ListWarehouse').DataTable({
-                    order: [[ 0, "asc" ]],
-                    // Enable searching on the name column
+                    responsive: true,
                     columns: [
                         {searchable: true }, // name column
                         null, // qty column

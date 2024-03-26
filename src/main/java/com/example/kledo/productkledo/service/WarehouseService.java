@@ -2,7 +2,6 @@ package com.example.kledo.productkledo.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -39,11 +38,7 @@ public class WarehouseService {
         return warehouseQtyDTOs;
     }
 
-    public void updateWarehouses(WarehouseResponse fetchedWarehouses) {
-        List<Warehouse> warehouses = fetchedWarehouses.getData().getData().stream()
-            .map(this::convertToEntityWarehouse)
-            .collect(Collectors.toList());
-        
+    public void updateWarehouses(List<Warehouse> warehouses) {
         for (Warehouse warehouse : warehouses) {
             warehouseRepository.save(warehouse);
         }

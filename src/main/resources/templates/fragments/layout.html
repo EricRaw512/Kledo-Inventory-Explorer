@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title th:text="${pageTitle}">Page title</title>
+    
+    <link rel="stylesheet" th:href="@{/style.css}" />
 
     <!-- Bootstrap core -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
@@ -15,10 +17,14 @@
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 
     <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css" />
 
+    <!-- DataTables Responsive Script -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/js/responsive.dataTables.js" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js" />
+    
     <!-- DataTable Script-->
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <script src="//cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
 
 </head>
 <div sec:authorize="isAuthenticated()">

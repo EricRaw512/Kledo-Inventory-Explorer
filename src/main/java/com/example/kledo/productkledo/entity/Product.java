@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "product")
-public class Product extends BaseEntity{
+public class Product extends BaseEntityWithoutGenerated{
 
     private String name;
     private String photo;

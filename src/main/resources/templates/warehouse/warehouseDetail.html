@@ -13,7 +13,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="product : ${products}">
-                        <td> <img th:src="${product.photo}" alt="Photo"> </td>
+                        <td> <img th:src="${product.photo}" class="product-photo" alt="Photo"> </td>
                         <td>
                             <a th:href="@{/product/{id}(id=${product.id})}" class="text-dark">
                                 <span th:text="${product.name}">Warehouse Name</span>
@@ -32,8 +32,7 @@
                     columnDefs: [
                         { orderable: false, targets: 0 }
                     ],
-                    order: [[ 1, "asc" ]],
-                    // Enable searching on the name column
+                    responsive: true,
                     columns: [
                         null, // Photo column
                         { searchable: true }, // Name column

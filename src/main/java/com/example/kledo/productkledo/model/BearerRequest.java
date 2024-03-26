@@ -13,6 +13,6 @@ public class BearerRequest {
     private String password;
 
     @JsonProperty("remember_me")
-    private int rememberMe;
+    private boolean rememberMe;
 }
 

@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class WarehouseDTO {
+
     Warehouse warehouse;
     private int qty;
 }
