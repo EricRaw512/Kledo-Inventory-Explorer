@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'product','Product Detail')}">
 <body>
-    <div class="container">
-        <h2 th:text="${product.name}"></h2>
-        <img th:src="${product.photo}" class="product-photo" alt="Product Photo">
+    <div class="container mt-5">
+        <h2 class="text-center" th:text="${product.name}"></h2>
+        <img th:src="${product.photo}" class="img-fluid product-photo mx-auto d-block mt-3" th:alt="${product.name}">
     </div>
 
     <div class="container mt-5">
@@ -17,7 +17,7 @@
             <tbody>
             <tr th:each="warehouseQty : ${warehouses}"> 
                 <td>
-                    <a th:href="@{/warehouse/{id}(id=${warehouseQty.warehouse.id})}" th:text="${warehouseQty.warehouse.name}" class="warehouse-name"></a>
+                    <a th:href="@{/warehouse/{id}(id=${warehouseQty.warehouse.id})}" th:text="${warehouseQty.warehouse.name}" class="text-dark"></a>
                 </td>
                 <td th:text="${warehouseQty.qty}"></td>
             </tr>

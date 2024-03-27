@@ -31,6 +31,9 @@ public class ProductsResponse {
             public static class ProductInWarehouse {
                 @JsonProperty("product_id")
                 private int productId;
+
+                @JsonProperty("id")
+                private int id;
         
                 @JsonProperty("qty")
                 private int qty;

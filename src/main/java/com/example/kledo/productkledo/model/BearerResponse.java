@@ -8,9 +8,6 @@ import lombok.Data;
 public class BearerResponse {
     @JsonProperty("success")
     private boolean success;
-
-    @JsonProperty("message")
-    private String message;
     
     @JsonProperty("data")
     private Data data;

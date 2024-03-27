@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'update','Update Data')}">
 <body>
-    <div th:if="${message}">
-        <p th:text="${message}"></p>
+    <div class="container mt-5">
+        <div th:if="${message}">
+            <div class="alert alert-primary" role="alert">
+                <p th:text="${message}"></p>
+            </div>
+        </div>
+        
+        <form id="updateForm" th:action="@{/update/}" th:object="${bearerRequest}" method="post" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control" required>
+                <div class="invalid-feedback">Please provide a valid email.</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" th:field="*{password}" class="form-control" required>
+                <div class="invalid-feedback">Please provide a password.</div>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="remember_me" th:field="*{rememberMe}" class="form-check-input" value="false">
+                <label class="form-check-label" for="remember_me">Remember me</label>
+            </div>
+            <div class="form-group">
+                <button type="submit" onclick="setAction('/update/product')" class="btn btn-primary mr-2">Update Product</button>
+                <button type="submit" onclick="setAction('/update/')" class="btn btn-primary">Update</button>
+            </div>
+        </form>
     </div>
-    
-    <form th:action="@{/update/}" th:object="${bearerRequest}" method="post">
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" th:field="*{email}" required>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" th:field="*{password}" required>
-        </div>
-        <div>
-            <input type="checkbox" id="remember_me" th:field="*{rememberMe}" value="false">
-            <label for="remember_me">Remember me</label>
-        </div>
-        <div>
-            <button type="submit">Login</button>
-        </div>
-    </form>
+
+    <script>
+        function setAction(action) {
+            document.getElementById('updateForm').action = action;
+        }
+    </script>
 </body>
+</html>

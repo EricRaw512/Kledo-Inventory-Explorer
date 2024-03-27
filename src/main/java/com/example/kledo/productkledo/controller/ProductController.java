@@ -29,7 +29,7 @@ public class ProductController {
     public String showWarehouse(@PathVariable("id") int id, Model model) {
         model.addAttribute("product", productService.getProductWithId(id));
         model.addAttribute("warehouses", warehouseService.getAllWarehousesAndQtyByProductId(id));
-        return "warehouse/productDetail";
+        return "product/productDetail";
     }
 
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home','Home')}">
     <body>
-        <header class="bg-dark text-white text-center py-3">
+        <header class="bg-dark text-white text-center py-5">
             <h1>Selamat Datang di Daftar Gudang dan Produk Kami</h1>
         </header>
         <main class="container mt-5">
@@ -15,8 +15,10 @@
             <section id="call-to-action" class="mt-5">
                 <h2>Siap menemukan Gudang atau Produk yang Tepat?</h2>
                 <p>Jelajahi database kami sekarang dan temukan apa yang Anda cari.</p>
-                <a class="nav-link" id="nav-link-red"th:href="@{/warehouse/all}">Gudang</a>
-                <a class="nav-link" id="nav-link-red" th:href="@{/product/all}">Product</a>
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-primary mr-2" th:href="@{/warehouse/all}">Gudang</a>
+                    <a class="btn btn-primary" th:href="@{/product/all}">Produk</a>
+                </div>
             </section>
         </main>
   </body>

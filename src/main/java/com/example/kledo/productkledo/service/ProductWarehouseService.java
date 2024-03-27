@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.kledo.productkledo.dao.ProductWarehouseRepository;
 import com.example.kledo.productkledo.entity.Product;
@@ -18,6 +19,7 @@ public class ProductWarehouseService {
     
     private final ProductWarehouseRepository productWarehouseRepository;
 
+    @Transactional
     public void deleteAllProductWarehouseByWarehouseId(int warehouseId) {
         productWarehouseRepository.deleteByWarehouseId(warehouseId);
     }
