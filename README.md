@@ -2,7 +2,7 @@
 
 > Kledo Invetory Explorer is a user-friendly application designed to provide a comprehensive view of product inventory and warehouse information directly from the Kledo app. This tool is specifically tailored for viewing product details, including quantity and product photos, accessible from both mobile phones and PCs.
 
-![alt text](https://github.com/EricRaw512/image/blob/main/KledoInventoryExplorer.png.png?raw=true)
+![alt text](https://github.com/EricRaw512/image/blob/main/KledoInventoryExplorer.png?raw=true)
 
 ## Steps to Setup
 
