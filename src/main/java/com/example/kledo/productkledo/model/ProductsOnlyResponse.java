@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
+
+//A Product Response with All product
 @Data
 public class ProductsOnlyResponse {
 
@@ -30,6 +32,12 @@ public class ProductsOnlyResponse {
     
             @JsonProperty("photo")
             private String photo;
+
+            @JsonProperty("base_price")
+            private int price;
+
+            @JsonProperty("pos_product_category_id")
+            private int categoryId;
         }
     }
 }

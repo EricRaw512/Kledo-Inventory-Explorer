@@ -29,7 +29,8 @@ public class ProductService {
             String photo = (String) result[2];
             Long value = (long) result[3];
             int totalQty = value.intValue();
-            productQtyDTOs.add(new ProductDTO(productId, name, photo, totalQty));
+            int priceList = (int) result[4];
+            productQtyDTOs.add(new ProductDTO(productId, name, photo, totalQty, priceList));
         }
 
         return productQtyDTOs;
@@ -43,7 +44,8 @@ public class ProductService {
             String name = (String) result[1];
             String photo = (String) result[2];
             int totalQty = (int) result[3];
-            productQtyDTOs.add(new ProductDTO(productId, name, photo, totalQty));
+            int priceList = (int) result[4];
+            productQtyDTOs.add(new ProductDTO(productId, name, photo, totalQty, priceList));
         }
 
         return productQtyDTOs;
@@ -66,10 +68,23 @@ public class ProductService {
         product.setId(apiProduct.getId());
         product.setName(apiProduct.getName());
         product.setPhoto(apiProduct.getPhoto());
+        product.setPriceList(apiProduct.getPrice());
+        product.setCategoryId(apiProduct.getCategoryId());
         return product;
     }
 
     public void createOrUpdateProduct(Product product) {
+        Product productExist = getProductWithId(product.getId());
+        if (productExist != null && productExist.getPriceList() != 0) {
+            product.setPriceList(productExist.getPriceList());
+        } else {
+            double newPriceList = 0;
+            if (product.getCategoryId() == 1) newPriceList = product.getPriceList() * 2.5;
+            else newPriceList = product.getPriceList() * 3;
+            
+            product.setPriceList((int) Math.ceil(newPriceList / 1000.0) * 1000);
+        }
+
         productRepository.save(product);
     }
 
@@ -82,6 +97,11 @@ public class ProductService {
             if (!addedProduct.add(product.getId())) continue;
             createOrUpdateProduct(product);
         }
+    }
+
+    public void updateProductPricelist(int id) {
+        Product curProduct = getProductWithId(id);
+        cu
     }
 
 }
