@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.kledo.productkledo.dto.ProductDTO;
 import com.example.kledo.productkledo.entity.Product;
 import com.example.kledo.productkledo.service.ProductService;
 import com.example.kledo.productkledo.service.WarehouseService;
@@ -31,14 +32,16 @@ public class ProductController {
     @GetMapping("/{id}")
     public String showWarehouse(@PathVariable("id") int id, Model model) {
         model.addAttribute("product", productService.getProductWithId(id));
+        model.addAttribute("productpriceList", new ProductDTO());
         model.addAttribute("warehouses", warehouseService.getAllWarehousesAndQtyByProductId(id));
         return "product/productDetail";
     }
 
     @PostMapping("/update/{id}")
-    public String updateProduct(@PathVariable Long id, @ModelAttribute Product product) {
-        product.setId(id); // Set the product ID from path variable (ensure it's not overwritten)
-        productService.updateProduct(product);
-        return "redirect:/product/id"; // Redirect to product list page after update
+    public String updateProduct(@PathVariable int id, @ModelAttribute ProductDTO productDTO) {
+        Product product = productService.getProductWithId(id);
+        product.setPriceList(productDTO.getPriceList());
+        productService.updateProductPricelist(product);
+        return "redirect:/product/" + id;
     }
 }

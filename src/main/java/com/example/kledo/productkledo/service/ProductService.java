@@ -99,9 +99,8 @@ public class ProductService {
         }
     }
 
-    public void updateProductPricelist(int id) {
-        Product curProduct = getProductWithId(id);
-        cu
+    public void updateProductPricelist(Product product) {
+        productRepository.save(product);
     }
 
 }
