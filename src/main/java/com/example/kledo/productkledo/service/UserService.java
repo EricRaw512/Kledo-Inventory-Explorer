@@ -1,5 +1,7 @@
 package com.example.kledo.productkledo.service;
 
+import java.util.List;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,10 @@ public class UserService {
 
     public boolean userExist(String value) {
         return userRepository.findByUserName(value).orElse(null) != null;
+    }
+
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
     }
 
 }

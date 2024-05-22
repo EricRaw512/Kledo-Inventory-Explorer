@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'user','User List')}">
+    <body>
+        <a th:href="@{/users/new/user}" class="btn btn-primary mb-3">Create User</a>
+
+        <table id="userTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.userName}"></td>
+                    <td th:text="${user.role}"></td>
+                    <td>
+                        <a th:href="@{|/users/${user.id}/delete|}" class="btn btn-danger btn-sm delete-user" th:attr="data-id=${user.id}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete user with ID <span id="deleteUserId"></span>?
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form id="confirmForm" method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <script>
+        $(document).ready(function() {
+            $('#userTable').DataTable();
+
+            // Handle delete button click
+            $('.delete-user').click(function(e) {
+                e.preventDefault();
+                var userId = $(this).data('id');
+                $('#deleteUserId').text(userId);
+                $('#confirmForm').attr('action', '/users/' + userId + '/delete');
+                $('#deleteConfirmationModal').modal('show');
+            });
+        });
+        </script>
+
+    </body>
+</html>

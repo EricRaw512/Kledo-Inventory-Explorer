@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.kledo.productkledo.model.UserForm;
 import com.example.kledo.productkledo.service.UserService;
 
 import jakarta.validation.Valid;
-
 
 @Controller
 @RequiredArgsConstructor
@@ -44,4 +44,17 @@ public class UserController {
         System.out.println(userForm.getUserName());
         return "user/CreateUser";
     }
+
+    @GetMapping("/all")
+    public String showUsersList(Model model) {
+        model.addAttribute("users", userService.findAllUsers());
+        return "user/userList";
+    }
+
+    @PostMapping("/{userId}/delete")
+    public String postMethodName(@PathVariable("userId") int id) {
+        userService.deleteUserById(id);
+        return "redirect:/users/all";
+    }
+    
 }
