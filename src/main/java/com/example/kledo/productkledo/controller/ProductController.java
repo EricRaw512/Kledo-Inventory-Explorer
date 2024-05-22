@@ -38,7 +38,7 @@ public class ProductController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateProduct(@PathVariable int id, @ModelAttribute ProductDTO productDTO) {
+    public String updateProduct(@PathVariable int id, @ModelAttribute("productpriceList") ProductDTO productDTO) {
         Product product = productService.getProductWithId(id);
         product.setPriceList(productDTO.getPriceList());
         productService.updateProductPricelist(product);

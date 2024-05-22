@@ -51,7 +51,7 @@ public class UpdateController {
     public String processUpdateProductWarehouse(BearerRequest bearerRequest, Model model) {
         //get The bearer Token
         BearerResponse bearerResponse = apiService.fetchBearerToken(bearerRequest);
-        if (!bearerResponse.isSuccess()) {
+        if (bearerRequest == null || !bearerResponse.isSuccess()) {
             model.addAttribute("message", "Username or Password is wrong");
             return "update/updateForm";
         }
@@ -59,7 +59,7 @@ public class UpdateController {
         String bearerToken = bearerResponse.getAccessToken();
         //get The wareHouse Data
         WarehouseResponse fetchedWarehouses = apiService.fetchWarehousesFromApi(bearerToken);
-        if (!fetchedWarehouses.isSuccess()) {
+        if (fetchedWarehouses == null || !fetchedWarehouses.isSuccess()) {
             model.addAttribute("message", "Failed to fetch Warehouse Data");
             return "update/updateForm";
         }
@@ -73,7 +73,7 @@ public class UpdateController {
 
             //Get The Product
             ProductsResponse fetchedProduct = apiService.fetchProductsFroWarehousemApi(bearerToken, curWarehouseId);
-            if (!fetchedProduct.isSuccess()) {
+            if (fetchedProduct == null || !fetchedProduct.isSuccess()) {
                 model.addAttribute("message", "Failed to fetch Product Data From" + curWarehouseId);
                 return "update/updateForm";
             }
@@ -91,7 +91,7 @@ public class UpdateController {
             productWarehouseService.associateProductWithWarehouse(products, warehouse, productIdToQuantity);
         }
         
-        model.addAttribute("message", "Update Success");
+        model.addAttribute("message", "Warehouse Update Success");
         return "update/updateForm";
     }
 
@@ -99,7 +99,7 @@ public class UpdateController {
     public String processProductUpdate(BearerRequest bearerRequest, Model model) {
         //get The bearer Token
         BearerResponse bearerResponse = apiService.fetchBearerToken(bearerRequest);
-        if (!bearerResponse.isSuccess()) {
+        if (bearerResponse == null || !bearerResponse.isSuccess()) {
             model.addAttribute("message", "Username or Password is wrong");
             return "update/updateForm";
         }
@@ -107,13 +107,13 @@ public class UpdateController {
         String bearerToken = bearerResponse.getAccessToken();
         //get The Product Data
         ProductsOnlyResponse fetchesProduct = apiService.fetchProductsFromApi(bearerToken);
-        if (!fetchesProduct.isSuccess()) {
+        if (fetchesProduct == null || !fetchesProduct.isSuccess()) {
             model.addAttribute("message", "Failed to fetch product Data");
             return "update/updateForm";
         }
 
         updateProduct(fetchesProduct);
-        model.addAttribute("message", "Update Success");
+        model.addAttribute("message", "Product Update Success");
         return "update/updateForm";
     }
     

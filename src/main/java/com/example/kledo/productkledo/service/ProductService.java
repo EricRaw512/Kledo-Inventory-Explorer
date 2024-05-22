@@ -79,7 +79,7 @@ public class ProductService {
             product.setPriceList(productExist.getPriceList());
         } else {
             double newPriceList = 0;
-            if (product.getCategoryId() == 1) newPriceList = product.getPriceList() * 2.5;
+            if (product.getCategoryId() == 1 && product.getPriceList() > 1_200_000) newPriceList = product.getPriceList() * 2.5;
             else newPriceList = product.getPriceList() * 3;
             
             product.setPriceList((int) Math.ceil(newPriceList / 1000.0) * 1000);

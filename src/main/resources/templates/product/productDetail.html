@@ -5,7 +5,7 @@
         <h2 class="text-center" th:text="${product.name}"></h2>
         <img th:src="${product.photo}" class="img-fluid product-photo mx-auto d-block mt-3" th:alt="${product.name}">
         <h3 class="text-center" th:text="'Harga List = Rp ' + ${#numbers.formatDecimal(product.priceList, 0, 'POINT', 0, 'COMMA')}"></h3>
-        <form sec:authorize="hasRole('ADMIN')" th:action="@{/products/update/{id}(id=${product.id})}" th:object="${productpriceList}" method="post" class="text-center">
+        <form sec:authorize="hasRole('ADMIN')" th:action="@{/product/update/{id}(id=${product.id})}" th:object="${productpriceList}" method="post" class="text-center">
             <label for="priceList">Price List (IDR):</label>
             <input type="number" id="priceList" th:field="${productpriceList.priceList}" name="priceList">
             <br>
