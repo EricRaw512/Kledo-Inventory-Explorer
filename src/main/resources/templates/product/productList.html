@@ -19,10 +19,12 @@
                             </a>
                         </td>
                         <td th:text="${product.qty}"></td>
+                        <td th:text="'Rp ' +${#numbers.formatDecimal(product.priceList, 0, 'POINT', 0, 'COMMA')}"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
         <script>
             $(document).ready(function() {
                 $('#productTable').DataTable({
@@ -34,6 +36,7 @@
                         null,
                         {searchable: true }, // name column
                         null, // qty column
+                        null,
                     ]
                 });
             });
